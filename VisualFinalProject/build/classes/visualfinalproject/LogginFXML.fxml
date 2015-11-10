@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="217.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.LogginController">
+   <children>
+      <TextField fx:id="userField" layoutX="86.0" layoutY="51.0" />
+      <PasswordField fx:id="passField" layoutX="86.0" layoutY="108.0" />
+      <Label layoutX="133.0" layoutY="23.0" text="Username" />
+      <Label layoutX="135.0" layoutY="83.0" text="Password" />
+      <RadioButton layoutX="86.0" layoutY="178.0" mnemonicParsing="false" text="Admin">
+         <toggleGroup>
+            <ToggleGroup fx:id="log" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="185.0" layoutY="178.0" mnemonicParsing="false" text="User" toggleGroup="$log" />
+      <Button layoutX="138.0" layoutY="143.0" mnemonicParsing="false" text="Login" onAction="#loginAction"  />
+   </children>
+</AnchorPane>
