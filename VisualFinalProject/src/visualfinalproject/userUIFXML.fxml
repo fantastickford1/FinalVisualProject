@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="visualfinalproject.UserUIFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.UserUIFXMLController">
    <children>
       <TreeView fx:id="treeView" layoutY="27.0" prefHeight="373.0" prefWidth="178.0">
          <contextMenu>
@@ -24,8 +23,8 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="PaintButton" layoutX="88.0" layoutY="147.0" mnemonicParsing="false" text="Paint" />
-                        <Button fx:id="blockButton" layoutX="271.0" layoutY="147.0" mnemonicParsing="false" text="Block de notas" />
+                        <Button fx:id="PaintButton" layoutX="88.0" layoutY="147.0" mnemonicParsing="false" onAction="#openPaint" text="Paint" />
+                        <Button fx:id="blockButton" layoutX="271.0" layoutY="147.0" mnemonicParsing="false" onAction="#openBlock" text="Block de notas" />
                      </children>
                   </AnchorPane>
             </content>
@@ -44,7 +43,10 @@
                         <TextField fx:id="phoneField" layoutX="173.0" layoutY="151.0" />
                         <Label layoutX="124.0" layoutY="187.0" text="Curp" />
                         <TextField fx:id="curpField" layoutX="173.0" layoutY="183.0" />
-                        <Button fx:id="modificarButton" layoutX="178.0" layoutY="247.0" mnemonicParsing="false" text="Modificar" />
+                        <Button fx:id="modificarButton" layoutX="255.0" layoutY="288.0" mnemonicParsing="false" onAction="#Update" text="Modificar" />
+                        <TextField fx:id="mailField" layoutX="173.0" layoutY="227.0" />
+                        <Label layoutX="123.0" layoutY="231.0" text="E-mail" />
+                        <Button layoutX="173.0" layoutY="288.0" mnemonicParsing="false" onAction="#Perfil" text="Ver mi perfil" />
                      </children>
                   </AnchorPane>
             </content>

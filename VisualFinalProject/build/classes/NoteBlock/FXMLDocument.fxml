@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NoteBlock.FXMLNoteBlockController">
+    <children>
+        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="500" prefWidth="300" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+             <contextMenu>
+                <ContextMenu>
+                    <items>
+                        <MenuItem fx:id="menuDeshacer" onAction="#deshacer" text="Deshacer" /> 
+                        <MenuItem fx:id="menuRehacer" onAction="#rehacer" text="Rehacer" /> 
+                    </items>
+                </ContextMenu>
+            </contextMenu>    
+        </TextArea>
+        
+        <MenuBar prefHeight="20" prefWidth="300" style="fx-background-color: #819FF7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu text="Archivo">
+                    <items>
+                  <MenuItem mnemonicParsing="false" text="Abrir" onAction="#abrir"  />
+                  <MenuItem mnemonicParsing="false" text="Guardar" onAction="#guardar"  />
+                  <MenuItem mnemonicParsing="false" text="Guardar Como" onAction="#guardarComo"  />
+                        <MenuItem onAction="#creditos" text="Creditos" />
+                        <MenuItem onAction="#salir" text="Salir" />
+                    </items>
+                    
+                </Menu>
+                <Menu text="Edición">
+                    
+                    <items>
+                        <MenuItem onAction="#deshacer" text="Deshacer" />
+                        <MenuItem onAction="#rehacer" text="Rehacer" />
+                    </items>
+                    
+                </Menu>
+
+
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

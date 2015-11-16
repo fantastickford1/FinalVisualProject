@@ -8,8 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="visualfinalproject.AdminFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.AdminFXMLController">
    <children>
       <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -38,10 +37,10 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <MenuButton layoutX="136.0" layoutY="32.0" mnemonicParsing="false" text="Elegir una opción">
+                        <MenuButton fx:id="mbOpcionA" layoutX="136.0" layoutY="32.0" mnemonicParsing="false" text="Elegir una opción">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Usuario" />
-                            <MenuItem mnemonicParsing="false" text="Administrador " />
+                            <MenuItem fx:id="miUserA" mnemonicParsing="false" onAction="#changeNameU" text="Usuario" />
+                            <MenuItem fx:id="miAdminA" mnemonicParsing="false" onAction="#changeNameA" text="Administrador " />
                           </items>
                         </MenuButton>
                         <Label layoutX="14.0" layoutY="36.0" text="¿Que desea agregar?" />
@@ -55,9 +54,9 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="89.0" layoutY="95.0" prefHeight="25.0" prefWidth="171.0" />
-                        <TextField layoutX="112.0" layoutY="137.0" prefHeight="25.0" prefWidth="163.0" />
-                        <Button layoutX="274.0" layoutY="209.0" mnemonicParsing="false" text="Agregar">
+                        <TextField fx:id="txtUserA" layoutX="89.0" layoutY="95.0" prefHeight="25.0" prefWidth="171.0" />
+                        <TextField fx:id="txtPassA" layoutX="112.0" layoutY="137.0" prefHeight="25.0" prefWidth="163.0" />
+                        <Button layoutX="274.0" layoutY="209.0" mnemonicParsing="false" onAction="#Agregar" text="Agregar">
                            <font>
                               <Font name="Agency FB" size="20.0" />
                            </font>
@@ -71,10 +70,10 @@
                   <AnchorPane prefHeight="273.0" prefWidth="595.0">
                      <children>
                         <Label layoutX="28.0" layoutY="36.0" text="¿Que desea borrar?" />
-                        <MenuButton layoutX="147.0" layoutY="32.0" mnemonicParsing="false" text="Elegir una opción">
+                        <MenuButton fx:id="mbOpcionB" layoutX="147.0" layoutY="32.0" mnemonicParsing="false" text="Elegir una opción">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Usuario" />
-                            <MenuItem mnemonicParsing="false" text="Administrador" />
+                            <MenuItem fx:id="miUserB" mnemonicParsing="false" onAction="#changeNameUB" text="Usuario" />
+                            <MenuItem fx:id="miAdminB" mnemonicParsing="false" onAction="#changeNameAB" text="Administrador" />
                           </items>
                         </MenuButton>
                         <Label layoutX="36.0" layoutY="127.0" text="Usuario">
@@ -82,8 +81,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="104.0" layoutY="125.0" prefHeight="25.0" prefWidth="174.0" />
-                        <Button layoutX="260.0" layoutY="212.0" mnemonicParsing="false" text="Borrar">
+                        <TextField fx:id="txtUserB" layoutX="104.0" layoutY="125.0" prefHeight="25.0" prefWidth="174.0" />
+                        <Button layoutX="260.0" layoutY="212.0" mnemonicParsing="false" onAction="#Borrar" text="Borrar">
                            <font>
                               <Font name="Agency FB" size="20.0" />
                            </font>
@@ -96,10 +95,12 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="70.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="172.13671875" />
+                        <Text fx:id="txtUserList" layoutX="70.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="172.13671875" />
                         <Label layoutX="133.0" layoutY="40.0" text="Usuarios" />
                         <Label layoutX="365.0" layoutY="40.0" text="Administradores" />
-                        <Text layoutX="324.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="168.13671875" />
+                        <Text fx:id="txtAdminList" layoutX="324.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="168.13671875" />
+                        <Button layoutX="274.0" layoutY="231.0" mnemonicParsing="false" onAction="#Consultar" text="Consultar" />
+                        <TextFlow fx:id="txtFlow" layoutX="56.0" layoutY="98.0" prefHeight="178.0" prefWidth="200.0" textAlignment="CENTER" />
                      </children>
                   </AnchorPane>
                </content>

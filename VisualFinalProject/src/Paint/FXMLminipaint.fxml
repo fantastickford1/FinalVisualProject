@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="453.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Paint.FXMLminipaintController">
+    <children>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="424.0" prefWidth="107.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+        <items>
+          <Button fx:id="rectButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setRectangleAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Rectangulo" />
+            <Button fx:id="lineButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setLineAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Linea" />
+            <Button fx:id="ovlButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setOvalAsCurrentShape" prefHeight="20.0" prefWidth="20.0" text="Ovalo" />
+            <Button fx:id="pencButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setFreeDesign" prefHeight="20.0" prefWidth="20.0" text="Lapiz" />
+            <Button fx:id="eraserButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#setErase" prefHeight="20.0" prefWidth="20.0" text="Borrador" />
+            <Button fx:id="clearButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#clearCanvas" prefHeight="20.0" prefWidth="20.0" text="Limpiar" />
+            <Separator prefHeight="3.0" prefWidth="0.0" />
+            <Label text="Stroke color" />
+            <ColorPicker fx:id="colorPick" prefHeight="25.0" prefWidth="51.0" />
+            <Label text="Fill color" />
+            <ColorPicker fx:id="FillcolorPick" prefHeight="25.0" prefWidth="51.0" />
+            <Separator prefHeight="3.0" prefWidth="0.0" />
+            <RadioButton fx:id="strokeRB" mnemonicParsing="false" selected="true" text="Stroke">
+               <toggleGroup>
+                  <ToggleGroup fx:id="shapes" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="fillRB" mnemonicParsing="false" text="Fill" toggleGroup="$shapes" />
+            <RadioButton fx:id="strokeFillRB" mnemonicParsing="false" text="Stroke&amp;Fill" toggleGroup="$shapes" />
+            <Slider fx:id="sizeSlider" prefHeight="14.0" prefWidth="59.0" />          
+        </items>
+      </ToolBar>
+      <Canvas fx:id="TheCanvas" height="424.0" layoutX="107.0" width="546.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="29.0" />
+      <Canvas fx:id="canvasGo" height="424.0" layoutX="107.0" onMouseDragged="#onMouseDraggedListener" onMouseExited="#onMouseExitedListener" onMousePressed="#onMousePressedListener" onMouseReleased="#onMouseReleaseListener" width="546.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="29.0" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="652.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openImage" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#save"  text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveAsNewImage" text="Save as" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Deshacer" onAction="#undoCanvas"  />
+                  <MenuItem mnemonicParsing="false" text="Rehacer" onAction="#redoCanvas"  />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>          
+   </children>
+</AnchorPane>
