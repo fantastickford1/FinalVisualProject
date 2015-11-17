@@ -119,6 +119,10 @@ public class GestorArchivos {
         }
     }
     
+    public File getPathDirectoty(){
+        return this.myPath;
+    }
+    
     
     
 }

@@ -7,6 +7,7 @@ package visualfinalproject;
 
 import NoteBlock.*;
 import Paint.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -17,11 +18,14 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -33,8 +37,9 @@ public class UserUIFXMLController implements Initializable {
     
     
     @FXML private TextField nameField, apellidoField, direcField,phoneField, curpField, mailField;
-    @FXML private TreeView treeView;
+    @FXML private TreeView<File> treeView;
     
+    private Node folder,txtFile,pngFile;
     private Conexion con = null;
     private ResultSet rs = null;
     private Scene scene;
@@ -43,17 +48,62 @@ public class UserUIFXMLController implements Initializable {
     private LogginController loggin;
     public GestorArchivos Archivos;
     private long phoneN;
+    private String primaryPath;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        loggin = new LogginController();
+        
+        folder = new ImageView(new Image(getClass().getResourceAsStream("/img/folderIcon16.png")));
+        txtFile = new ImageView(new Image(getClass().getResourceAsStream("/img/textIcon16.png")));
+        pngFile = new ImageView(new Image(getClass().getResourceAsStream("/img/pngIcon16.png")));
+        
+        //treeViewRefresher();
+    }
     
-    void setScene(Scene scene) {
-        this.scene = scene;
+    
+    private void findFiles(File dir, TreeItem<File> parent){
+        TreeItem<File> root = new TreeItem<>(dir,folder);
+        root.setExpanded(true);
+        try {
+            File[] files = dir.listFiles();
+            for (File file : files) {
+                if (file.isDirectory()){
+                    System.out.println("Directory: " + file.getCanonicalPath());
+                    findFiles(file,root);
+                }else{
+                    System.out.println("-> File: " + file.getCanonicalPath());
+                    root.getChildren().add(new TreeItem<>(file,txtFile));
+                }
+            }
+            if (parent == null){
+                System.out.println("treeView:root -> root");
+                treeView.setRoot(root);
+            }else {
+                System.out.println("parent:children -> root");
+                parent.getChildren().add(root);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML private void treeViewRefresher(){
+        File currentDirectoty = new File(this.primaryPath);
+        findFiles(currentDirectoty,null);
+    }
+    
+    @FXML private void deleteFile(){
+        TreeItem<File> selectedItem = (TreeItem<File>) treeView.getSelectionModel().selectedItemProperty().getValue();
+        try {
+            selectedItem.getValue().delete();
+        }catch (SecurityException e){
+            e.printStackTrace();
+        }
+        treeViewRefresher();
     }
     
     @FXML private void Perfil(){
@@ -64,7 +114,7 @@ public class UserUIFXMLController implements Initializable {
             System.err.println(ex.getMessage());
         }
         
-        loggin= new LogginController();
+        //loggin= new LogginController();
         
         System.out.println(loggin.getUser());
         
@@ -91,7 +141,7 @@ public class UserUIFXMLController implements Initializable {
             Logger.getLogger(UserUIFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        loggin= new LogginController();
+        //loggin= new LogginController();
         
         phoneN = Long.parseLong(phoneField.getText());
 
@@ -115,7 +165,7 @@ public class UserUIFXMLController implements Initializable {
         Scene paint = new Scene(root);
         myController.setScene(paint);
         
-        loggin = new LogginController();
+        //loggin = new LogginController();
         
         myController.setDirection(".//"+loggin.getUser()+"//");
         
@@ -143,7 +193,7 @@ public class UserUIFXMLController implements Initializable {
         Scene blockDeNotas = new Scene(root);
         myController.setScene(blockDeNotas);
         
-        loggin = new LogginController();
+        //loggin = new LogginController();
         
         myController.setDireccion(".//"+loggin.getUser()+"//");
         
@@ -154,9 +204,17 @@ public class UserUIFXMLController implements Initializable {
         
     }
     
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+    
     public void setDireccion(String path) {
+        this.primaryPath = path;
         this.Archivos = new GestorArchivos(path);
         Archivos.checkDirectory();
+        if (Archivos.checkDirectory()) {
+            treeViewRefresher();
+        }
     }
     
 }

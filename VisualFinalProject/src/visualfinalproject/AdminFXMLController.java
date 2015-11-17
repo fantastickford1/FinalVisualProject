@@ -18,6 +18,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -33,8 +35,7 @@ public class AdminFXMLController implements Initializable {
     @FXML private TextField txtUserA, txtPassA, txtUserB;
     @FXML private MenuButton mbOpcionA, mbOpcionB;
     @FXML private MenuItem miUserA, miAdminA;
-    @FXML private Text txtUserList,txtAdminList;
-    @FXML private TextFlow txtFlow;
+    @FXML private TreeView<String> userTree,adminTree;
     
     private Conexion con = null;
     private ResultSet rs = null;
@@ -123,14 +124,21 @@ public class AdminFXMLController implements Initializable {
         
         rs = con.buscar("SELECT * FROM usuarios WHERE type = 'admin'");
         
+        TreeItem<String> root = new TreeItem<>("Admins");
+        TreeItem<String> root2 = new TreeItem<>("Users");
+        root.setExpanded(true);
+        root2.setExpanded(true);
+        
         try {
-            while (rs.next()) {                
-                txtAdminList.setText(" " + rs.getString("user") + "\n");
+            while (rs.next()) {
+                System.out.println(rs.getString("user"));
+                root.getChildren().add(new TreeItem<String>(rs.getString("user")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdminFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        adminTree = new TreeView<>(root);
     }
     
         

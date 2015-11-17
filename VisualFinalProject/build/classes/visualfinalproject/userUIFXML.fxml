@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.UserUIFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.UserUIFXMLController">
    <children>
-      <TreeView fx:id="treeView" layoutY="27.0" prefHeight="373.0" prefWidth="178.0">
+      <TreeView fx:id="treeView" layoutY="27.0" prefHeight="373.0" prefWidth="206.0">
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem fx:id="eliminarContext" mnemonicParsing="false" text="Eliminar" />
+                <MenuItem fx:id="eliminarContext" mnemonicParsing="false" onAction="#deleteFile" text="Eliminar" />
               </items>
             </ContextMenu>
          </contextMenu>
       </TreeView>
-      <TabPane layoutX="178.0" layoutY="27.0" prefHeight="373.0" prefWidth="422.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="335.0" layoutY="27.0" prefHeight="373.0" prefWidth="371.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Utilidades">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="PaintButton" layoutX="88.0" layoutY="147.0" mnemonicParsing="false" onAction="#openPaint" text="Paint" />
-                        <Button fx:id="blockButton" layoutX="271.0" layoutY="147.0" mnemonicParsing="false" onAction="#openBlock" text="Block de notas" />
+                        <Button fx:id="blockButton" layoutX="178.0" layoutY="147.0" mnemonicParsing="false" onAction="#openBlock" text="Block de notas" />
                      </children>
                   </AnchorPane>
             </content>
@@ -33,27 +34,27 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="102.0" layoutY="48.0" text="Nombre" />
-                        <TextField fx:id="nameField" layoutX="173.0" layoutY="44.0" />
-                        <Label layoutX="102.0" layoutY="85.0" text="Apellido" />
-                        <TextField fx:id="apellidoField" layoutX="173.0" layoutY="81.0" />
-                        <Label layoutX="102.0" layoutY="120.0" text="Direccion" />
-                        <TextField fx:id="direcField" layoutX="173.0" layoutY="116.0" />
-                        <Label layoutX="104.0" layoutY="155.0" text="Telefono" />
-                        <TextField fx:id="phoneField" layoutX="173.0" layoutY="151.0" />
-                        <Label layoutX="124.0" layoutY="187.0" text="Curp" />
-                        <TextField fx:id="curpField" layoutX="173.0" layoutY="183.0" />
-                        <Button fx:id="modificarButton" layoutX="255.0" layoutY="288.0" mnemonicParsing="false" onAction="#Update" text="Modificar" />
-                        <TextField fx:id="mailField" layoutX="173.0" layoutY="227.0" />
-                        <Label layoutX="123.0" layoutY="231.0" text="E-mail" />
-                        <Button layoutX="173.0" layoutY="288.0" mnemonicParsing="false" onAction="#Perfil" text="Ver mi perfil" />
+                        <Label layoutX="76.0" layoutY="42.0" text="Nombre" />
+                        <TextField fx:id="nameField" layoutX="147.0" layoutY="38.0" />
+                        <Label layoutX="76.0" layoutY="79.0" text="Apellido" />
+                        <TextField fx:id="apellidoField" layoutX="147.0" layoutY="75.0" />
+                        <Label layoutX="76.0" layoutY="114.0" text="Direccion" />
+                        <TextField fx:id="direcField" layoutX="147.0" layoutY="110.0" />
+                        <Label layoutX="78.0" layoutY="149.0" text="Telefono" />
+                        <TextField fx:id="phoneField" layoutX="147.0" layoutY="145.0" />
+                        <Label layoutX="98.0" layoutY="181.0" text="Curp" />
+                        <TextField fx:id="curpField" layoutX="147.0" layoutY="177.0" />
+                        <Button fx:id="modificarButton" layoutX="229.0" layoutY="282.0" mnemonicParsing="false" onAction="#Update" text="Modificar" />
+                        <TextField fx:id="mailField" layoutX="147.0" layoutY="221.0" />
+                        <Label layoutX="97.0" layoutY="225.0" text="E-mail" />
+                        <Button layoutX="147.0" layoutY="282.0" mnemonicParsing="false" onAction="#Perfil" text="Ver mi perfil" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="706.0">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
@@ -72,5 +73,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <ImageView fitHeight="226.0" fitWidth="130.0" layoutX="205.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="242.0" layoutY="311.0" mnemonicParsing="false" onAction="#treeViewRefresher" text="Refresh" />
    </children>
 </AnchorPane>

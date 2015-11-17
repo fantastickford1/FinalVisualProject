@@ -95,12 +95,11 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Text fx:id="txtUserList" layoutX="70.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="172.13671875" />
-                        <Label layoutX="133.0" layoutY="40.0" text="Usuarios" />
-                        <Label layoutX="365.0" layoutY="40.0" text="Administradores" />
-                        <Text fx:id="txtAdminList" layoutX="324.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="168.13671875" />
+                        <Label layoutX="140.0" layoutY="23.0" text="Usuarios" />
+                        <Label layoutX="409.0" layoutY="23.0" text="Administradores" />
                         <Button layoutX="274.0" layoutY="231.0" mnemonicParsing="false" onAction="#Consultar" text="Consultar" />
-                        <TextFlow fx:id="txtFlow" layoutX="56.0" layoutY="98.0" prefHeight="178.0" prefWidth="200.0" textAlignment="CENTER" />
+                        <TreeView fx:id="userTree" layoutX="63.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
+                        <TreeView fx:id="adminTree" layoutX="353.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </AnchorPane>
                </content>
