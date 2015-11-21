@@ -41,7 +41,7 @@ public class LogginController implements Initializable {
     private Stage stage;
     
     public static String user;
-    private String password,type;
+    private String password;
     
     public void setStage(Stage stage){
         this.loggin = stage;
@@ -50,12 +50,6 @@ public class LogginController implements Initializable {
     @FXML private void logginAction(ActionEvent e){
         this.user= userField.getText();
         this.password= passField.getText();
-        if (rbAdmin.isSelected()) {
-            this.type = "admin";
-        }
-        if (rbUser.isSelected()) {
-            this.type = "normal";
-        }
         
         try {
             con= new Conexion("root", "root","sistema");
@@ -63,14 +57,17 @@ public class LogginController implements Initializable {
             System.err.println(ex.getMessage());
         }
         
-        rs= con.buscar("SELECT * FROM usuarios WHERE user= '"+user+"' AND password= '"+password+"' AND type= '"+type+"' ");
+        rs= con.buscar("SELECT * FROM usuarios WHERE user= '"+user+"' AND password= '"+password+"'");
         
         if (rs != null) {
-            if (rbAdmin.isSelected()) {
-                AdminWindow();
-            }
-            if (rbUser.isSelected()) {
-                UserWindow();
+            try {
+                if (rs.getString("type").equals("admin")) {
+                    AdminWindow();
+                }else if(rs.getString("type").equals("normal")){
+                    UserWindow();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(LogginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);

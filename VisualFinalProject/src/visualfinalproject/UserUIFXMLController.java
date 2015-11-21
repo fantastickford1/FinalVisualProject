@@ -39,7 +39,7 @@ public class UserUIFXMLController implements Initializable {
     @FXML private TextField nameField, apellidoField, direcField,phoneField, curpField, mailField;
     @FXML private TreeView<File> treeView;
     
-    private Node folder,txtFile,pngFile;
+    private Node pngFile;
     private Conexion con = null;
     private ResultSet rs = null;
     private Scene scene;
@@ -57,8 +57,8 @@ public class UserUIFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loggin = new LogginController();
         
-        folder = new ImageView(new Image(getClass().getResourceAsStream("/img/folderIcon16.png")));
-        txtFile = new ImageView(new Image(getClass().getResourceAsStream("/img/textIcon16.png")));
+        //folder = new ImageView(new Image(getClass().getResourceAsStream("/img/folderIcon16.png")));
+        //txtFile = new ImageView(new Image(getClass().getResourceAsStream("/img/textIcon16.png")));
         pngFile = new ImageView(new Image(getClass().getResourceAsStream("/img/pngIcon16.png")));
         
         //treeViewRefresher();
@@ -66,6 +66,7 @@ public class UserUIFXMLController implements Initializable {
     
     
     private void findFiles(File dir, TreeItem<File> parent){
+        Node folder = new ImageView(new Image(getClass().getResourceAsStream("/img/folderIcon16.png")));
         TreeItem<File> root = new TreeItem<>(dir,folder);
         root.setExpanded(true);
         try {
@@ -75,6 +76,7 @@ public class UserUIFXMLController implements Initializable {
                     System.out.println("Directory: " + file.getCanonicalPath());
                     findFiles(file,root);
                 }else{
+                    Node txtFile = new ImageView(new Image(getClass().getResourceAsStream("/img/textIcon16.png")));
                     System.out.println("-> File: " + file.getCanonicalPath());
                     root.getChildren().add(new TreeItem<>(file,txtFile));
                 }
