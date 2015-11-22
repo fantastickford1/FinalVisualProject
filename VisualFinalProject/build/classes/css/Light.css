@@ -1,0 +1,49 @@
+
+
+.button {
+    -fx-background-color:  #c3c4c4, linear-gradient(#d6d6d6 50%, white 100%), radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 0;
+    -fx-background-insets: 0,1,1;
+    -fx-text-fill: grey;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+.root{
+    -fx-background-color: #f3f3f3;
+}
+.label{
+    -fx-text-fill:  #398fb5;
+}
+
+.text-field {
+    -fx-border-color: #398fb5;
+    -fx-font-weight: bold;
+}
+
+.menu-bar {
+    //-fx-background-color: #383838;
+}
+
+.menu-item {
+    //-fx-background-color: #383838;
+}
+
+.tool-bar {
+    //-fx-background-color: #383838;
+    //-fx-border-color: white;
+}
+
+.button-blue{
+    -fx-background-color: #7cafc2;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 4;
+}
+
+.radio-button{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#bold-label{
+    -fx-font-weight: bold;
+}

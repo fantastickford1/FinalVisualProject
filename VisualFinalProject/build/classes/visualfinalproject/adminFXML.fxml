@@ -8,19 +8,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.AdminFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" snapToPixel="false" stylesheets="@../css/Dark.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.AdminFXMLController">
    <children>
-      <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar layoutX="7.0" layoutY="2.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Archivo">
+          <Menu mnemonicParsing="false" styleClass="menu-button" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
                   <MenuItem mnemonicParsing="false" text="Salir" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Ayuda">
+          <Menu mnemonicParsing="false" styleClass="menu-button" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="Creditos" />
+              <MenuItem mnemonicParsing="false" onAction="#creditsWindow" text="Creditos" />
             </items>
           </Menu>
         </menus>
@@ -54,9 +54,9 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtUserA" layoutX="89.0" layoutY="95.0" prefHeight="25.0" prefWidth="171.0" />
-                        <TextField fx:id="txtPassA" layoutX="112.0" layoutY="137.0" prefHeight="25.0" prefWidth="163.0" />
-                        <Button layoutX="274.0" layoutY="209.0" mnemonicParsing="false" onAction="#Agregar" text="Agregar">
+                        <TextField fx:id="txtUserA" layoutX="89.0" layoutY="95.0" opacity="0.68" prefHeight="25.0" prefWidth="171.0" promptText="User" />
+                        <TextField fx:id="txtPassA" layoutX="112.0" layoutY="137.0" opacity="0.68" prefHeight="25.0" prefWidth="163.0" promptText="Password" />
+                        <Button fx:id="btnAgregar" layoutX="222.0" layoutY="209.0" mnemonicParsing="false" onAction="#Agregar" prefHeight="50.0" prefWidth="137.0" text="Agregar">
                            <font>
                               <Font name="Agency FB" size="20.0" />
                            </font>
@@ -81,8 +81,8 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtUserB" layoutX="104.0" layoutY="125.0" prefHeight="25.0" prefWidth="174.0" />
-                        <Button layoutX="260.0" layoutY="212.0" mnemonicParsing="false" onAction="#Borrar" text="Borrar">
+                        <TextField fx:id="txtUserB" layoutX="104.0" layoutY="125.0" opacity="0.68" prefHeight="25.0" prefWidth="174.0" promptText="User" />
+                        <Button fx:id="btnBorrar" layoutX="228.0" layoutY="212.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="56.0" prefWidth="108.0" text="Borrar">
                            <font>
                               <Font name="Agency FB" size="20.0" />
                            </font>
@@ -95,11 +95,11 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="140.0" layoutY="23.0" text="Usuarios" />
-                        <Label layoutX="409.0" layoutY="23.0" text="Administradores" />
-                        <Button layoutX="274.0" layoutY="231.0" mnemonicParsing="false" onAction="#Consultar" text="Consultar" />
-                        <TreeView fx:id="userTree" layoutX="63.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
-                        <TreeView fx:id="adminTree" layoutX="353.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
+                        <Label layoutX="89.0" layoutY="23.0" text="Usuarios" />
+                        <Label layoutX="423.0" layoutY="23.0" text="Administradores" />
+                        <Button fx:id="btnConsultar" layoutX="245.0" layoutY="135.0" mnemonicParsing="false" onAction="#Consultar" prefHeight="49.0" prefWidth="122.0" text="Consultar" />
+                        <TreeView fx:id="userTree" layoutX="28.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
+                        <TreeView fx:id="adminTree" layoutX="379.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </AnchorPane>
                </content>
