@@ -8,10 +8,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="217.0" prefWidth="320" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.LogginController">
+<AnchorPane id="AnchorPane" fx:id="anPane" prefHeight="217.0" prefWidth="320" stylesheets="@s" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visualfinalproject.LogginController">
    <children>
-      <TextField fx:id="userField" layoutX="87.0" layoutY="63.0" promptText="User" />
-      <Button layoutX="137.0" layoutY="160.0" mnemonicParsing="false" onAction="#logginAction" text="Login" />
-      <TextField fx:id="passField" layoutX="90.0" layoutY="109.0" promptText="Password" />
+      <TextField fx:id="userField" layoutX="86.0" layoutY="56.0" promptText="User" />
+      <Button fx:id="btnlogin" layoutX="137.0" layoutY="155.0" mnemonicParsing="false" onAction="#logginAction" prefHeight="38.0" prefWidth="48.0" />
+      <PasswordField fx:id="passField" layoutX="86.0" layoutY="109.0" promptText="Password" />
    </children>
 </AnchorPane>

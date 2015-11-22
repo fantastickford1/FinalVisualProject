@@ -19,9 +19,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 
 /**
@@ -33,12 +39,16 @@ public class LogginController implements Initializable {
     @FXML TextField userField;
     @FXML PasswordField passField;
     @FXML RadioButton rbAdmin, rbUser;
+    @FXML Button btnlogin;
+    @FXML AnchorPane anPane;
     
+    private ImageView login;
     private Conexion con = null;
     private ResultSet rs= null;
     private Stage loggin;
     private Scene scene;
     private Stage stage;
+    private Parent root;
     
     public static String user;
     private String password;
@@ -86,9 +96,10 @@ public class LogginController implements Initializable {
         FXMLLoader myLoader = new FXMLLoader(
         getClass().getResource("/visualfinalproject/adminFXML.fxml"));
         
-        Parent root = null;
+        //Parent root = null;
         try {
             root = (Parent) myLoader.load();
+            System.out.println("Here");
         } catch (IOException ex) {
             Logger.getLogger(LogginController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,7 +123,7 @@ public class LogginController implements Initializable {
         FXMLLoader myLoader = new FXMLLoader(
         getClass().getResource("/visualfinalproject/userUIFXML.fxml"));
         
-        Parent root = null;
+        //Parent root = null;
         try {
             root = (Parent) myLoader.load();
         } catch (IOException ex) {
@@ -137,7 +148,15 @@ public class LogginController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
+        login = new ImageView(new Image(getClass().getResourceAsStream("/img/login.png")));
+        login.setFitHeight(40);
+        login.setFitWidth(40);
+        btnlogin.setGraphic(login);
+        
+        anPane.setBackground(new Background(new BackgroundImage(new Image(getClass().getResourceAsStream("/img/hipster.jpg")),null,null,null,null)));
+        
     }    
     
 }

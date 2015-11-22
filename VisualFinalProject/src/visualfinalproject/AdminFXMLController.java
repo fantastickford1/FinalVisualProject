@@ -5,23 +5,31 @@
  */
 package visualfinalproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -36,7 +44,11 @@ public class AdminFXMLController implements Initializable {
     @FXML private MenuButton mbOpcionA, mbOpcionB;
     @FXML private MenuItem miUserA, miAdminA;
     @FXML private TreeView<String> userTree,adminTree;
+    @FXML private Button btnAgregar, btnBorrar, btnConsultar;
     
+    private ImageView agregar; 
+    private ImageView borrar;
+    private ImageView consultar;        
     private Conexion con = null;
     private ResultSet rs = null;
     
@@ -141,7 +153,25 @@ public class AdminFXMLController implements Initializable {
         adminTree = new TreeView<>(root);
     }
     
-        
+    
+    private void newWindow(String xmlfile){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(xmlfile));
+        } catch (IOException ex) {
+            Logger.getLogger(AdminFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    
+    @FXML
+    private void creditsWindow(ActionEvent e){
+       newWindow("creditsFXML.fxml");
+    }
    
     
     /**
@@ -150,10 +180,28 @@ public class AdminFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        agregar = new ImageView(new Image(getClass().getResourceAsStream("/img/agregar.png")));
+        agregar.setFitHeight(30);
+        agregar.setFitWidth(30);
+        btnAgregar.setGraphic(agregar);
+    
+        borrar = new ImageView(new Image(getClass().getResourceAsStream("/img/borrar.png")));
+        borrar.setFitHeight(30);
+        borrar.setFitWidth(30);
+        btnBorrar.setGraphic(borrar);
+    
+        consultar = new ImageView(new Image(getClass().getResourceAsStream("/img/buscar.png")));
+        consultar.setFitHeight(30);
+        consultar.setFitWidth(30);
+        btnConsultar.setGraphic(consultar);
     } 
+   
     
     void setScene(Scene scene) {
         this.scene = scene;
     }
+    
+    
     
 }

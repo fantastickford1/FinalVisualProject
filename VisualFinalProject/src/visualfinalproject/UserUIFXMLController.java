@@ -15,12 +15,14 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -38,6 +40,7 @@ public class UserUIFXMLController implements Initializable {
     
     @FXML private TextField nameField, apellidoField, direcField,phoneField, curpField, mailField;
     @FXML private TreeView<File> treeView;
+    @FXML private Button btnPaint, btnBlockN;
     
     private Node pngFile;
     private Conexion con = null;
@@ -49,6 +52,7 @@ public class UserUIFXMLController implements Initializable {
     public GestorArchivos Archivos;
     private long phoneN;
     private String primaryPath;
+    private ImageView paint, block;
 
     /**
      * Initializes the controller class.
@@ -62,6 +66,17 @@ public class UserUIFXMLController implements Initializable {
         pngFile = new ImageView(new Image(getClass().getResourceAsStream("/img/pngIcon16.png")));
         
         //treeViewRefresher();
+        
+        paint = new ImageView(new Image(getClass().getResourceAsStream("/img/paint.png")));
+        paint.setFitHeight(30);
+        paint.setFitWidth(30);
+        btnPaint.setGraphic(paint); 
+        
+        block = new ImageView(new Image(getClass().getResourceAsStream("/img/nota.png")));
+        block.setFitHeight(30);
+        block.setFitWidth(30);
+        btnBlockN.setGraphic(block);
+        
     }
     
     
@@ -217,6 +232,27 @@ public class UserUIFXMLController implements Initializable {
         if (Archivos.checkDirectory()) {
             treeViewRefresher();
         }
+    }
+    
+    
+     private void newWindow(String xmlfile){
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource(xmlfile));
+        } catch (IOException ex) {
+            Logger.getLogger(UserUIFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    
+    @FXML
+    private void creditsWindow(ActionEvent e){
+        
+       newWindow("creditsFXML.fxml");
     }
     
 }
