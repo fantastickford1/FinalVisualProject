@@ -53,6 +53,10 @@ public class LogginController implements Initializable {
     public static String user;
     private String password;
     
+    public void setScene(Scene scene){
+        this.scene = scene;
+    }
+    
     public void setStage(Stage stage){
         this.loggin = stage;
     }
@@ -86,8 +90,7 @@ public class LogginController implements Initializable {
             alert.setContentText("Change the password or user");
             alert.showAndWait();
         }
-    }
-    
+    }   
     
     @FXML
     private void AdminWindow(){
@@ -106,6 +109,7 @@ public class LogginController implements Initializable {
         AdminFXMLController myController = myLoader.getController();
         
         Scene userOrAdmin = new Scene(root);
+        myController.setStage(stage);
         myController.setScene(userOrAdmin);
         //Later for log 
         //myController.setDireccion(".//" + userField.getText() + "//");
@@ -132,6 +136,7 @@ public class LogginController implements Initializable {
         UserUIFXMLController myUserUIController = myLoader.getController();
         
         Scene userScene = new Scene(root);
+        myUserUIController.setStage(stage);
         myUserUIController.setScene(userScene);
         //Later for log 
         myUserUIController.setDireccion(".//" + userField.getText() + "//");
@@ -155,8 +160,7 @@ public class LogginController implements Initializable {
         login.setFitWidth(40);
         btnlogin.setGraphic(login);
         
-        anPane.setBackground(new Background(new BackgroundImage(new Image(getClass().getResourceAsStream("/img/hipster.jpg")),null,null,null,null)));
-        
+        anPane.setBackground(new Background(new BackgroundImage(new Image(getClass().getResourceAsStream("/img/hipster.jpg")),null,null,null,null))); 
     }    
     
 }

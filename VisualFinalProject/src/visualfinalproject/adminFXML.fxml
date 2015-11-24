@@ -14,8 +14,7 @@
         <menus>
           <Menu mnemonicParsing="false" styleClass="menu-button" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
-                  <MenuItem mnemonicParsing="false" text="Salir" />
+              <MenuItem mnemonicParsing="false" text="Logg out" onAction="#close"  />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" styleClass="menu-button" text="Ayuda">
@@ -96,7 +95,7 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="89.0" layoutY="23.0" text="Usuarios" />
-                        <Label layoutX="423.0" layoutY="23.0" text="Administradores" />
+                        <Label layoutX="442.0" layoutY="23.0" text="Administradores" />
                         <Button fx:id="btnConsultar" layoutX="245.0" layoutY="135.0" mnemonicParsing="false" onAction="#Consultar" prefHeight="49.0" prefWidth="122.0" text="Consultar" />
                         <TreeView fx:id="userTree" layoutX="28.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />
                         <TreeView fx:id="adminTree" layoutX="379.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" />

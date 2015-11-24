@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NoteBlock.FXMLNoteBlockController">
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NoteBlock.FXMLNoteBlockController">
     <children>
-        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="500" prefWidth="300" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+        <TextArea fx:id="TextoArea" layoutX="0" layoutY="27" onKeyTyped="#TextAreaArray" prefHeight="448.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="27.0">
              <contextMenu>
                 <ContextMenu>
                     <items>
@@ -23,25 +23,26 @@
             <menus>
                 <Menu text="Archivo">
                     <items>
-                  <MenuItem mnemonicParsing="false" text="Abrir" onAction="#abrir"  />
-                  <MenuItem mnemonicParsing="false" text="Guardar" onAction="#guardar"  />
-                  <MenuItem mnemonicParsing="false" text="Guardar Como" onAction="#guardarComo"  />
+                  <MenuItem mnemonicParsing="false" onAction="#abrir" text="Abrir" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+                  <MenuItem mnemonicParsing="false" onAction="#guardarComo" text="Guardar Como" />
                         <MenuItem onAction="#creditos" text="Creditos" />
                         <MenuItem onAction="#salir" text="Salir" />
                     </items>
                     
                 </Menu>
                 <Menu text="Edición">
-                    
                     <items>
                         <MenuItem onAction="#deshacer" text="Deshacer" />
                         <MenuItem onAction="#rehacer" text="Rehacer" />
                     </items>
                     
                 </Menu>
-
-
             </menus>
         </MenuBar>
+      <ComboBox fx:id="fontChose" onAction="#FontStyle" layoutX="455.0" layoutY="90.0" prefHeight="25.0" prefWidth="116.0" />
+      <ComboBox fx:id="fontSizeChose" onAction="#FontStyle" layoutX="455.0" layoutY="157.0" prefHeight="25.0" prefWidth="116.0" />
+      <Label layoutX="501.0" layoutY="67.0" text="Font" />
+      <Label layoutX="489.0" layoutY="132.0" text="Font Size" />
     </children>
 </AnchorPane>

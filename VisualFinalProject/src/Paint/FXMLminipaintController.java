@@ -5,14 +5,22 @@
  */
 package Paint;
 
+import FileBrowser.OpenFileBrowserFXMLController;
+import FileBrowser.SavePNGFileBrowserFXMLController;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,6 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 /**
@@ -56,6 +65,9 @@ public class FXMLminipaintController implements Initializable {
     Image originalImage;
     ControlDibujo controlDibujo = new ControlDibujo();
     private Scene scene;
+    private Stage stage;
+    private Parent root;
+    private File recoveredFile = null;
     //////////////////////////////////////////////////////////////////////////////
     
     @FXML
@@ -304,21 +316,63 @@ public class FXMLminipaintController implements Initializable {
     
     @FXML
     private void openImage(ActionEvent event){
+        stage = new Stage();
+        FXMLLoader myloader = new FXMLLoader(
+        getClass().getResource("/FileBrowser/OpenFileBrowserFXML.fxml"));
+        try {
+            root = (Parent) myloader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLminipaintController.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        OpenFileBrowserFXMLController myController = myloader.getController();
+        Scene fileBrowser = new Scene(root);
+        myController.setStage(stage);
+        myController.setScene(fileBrowser);
+        stage.setScene(fileBrowser);
+        stage.setTitle("Open File");
+        stage.showAndWait();
         Image imagenAbrir;
-        imagenAbrir =  this.imagenNueva.openFile();
+        imagenAbrir =  myController.getReadedImage();
         gcB.clearRect(0,0, TheCanvas.getWidth(), TheCanvas.getHeight());
         gcF.clearRect(0,0, TheCanvas.getWidth(), TheCanvas.getHeight());
         gcB.drawImage(imagenAbrir, 0, 0);
+        try {
+            this.recoveredFile =  new File (myController.getFilePath());
+        } catch (Exception e) {
+            System.err.println("Nothing recovered");
+        }
+        
+        
     }
     
     @FXML
-    private void saveAsNewImage(ActionEvent event){
-        this.imagenNueva.saveAsImage(this.TheCanvas.getGraphicsContext2D());
+    public void saveAsNewImage(){
+        //this.imagenNueva.saveAsImage(this.TheCanvas.getGraphicsContext2D());
+        stage = new Stage();
+        FXMLLoader myloader = new FXMLLoader(
+        getClass().getResource("/FileBrowser/SavePNGFileBrowserFXML.fxml"));
+        try {
+            root = (Parent) myloader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLminipaintController.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        SavePNGFileBrowserFXMLController myController = myloader.getController();
+        Scene fileBrowser = new Scene(root);
+        myController.setStage(stage);
+        myController.setScene(fileBrowser);
+        myController.setImageToSave(this.TheCanvas.getGraphicsContext2D());
+        stage.setScene(fileBrowser);
+        stage.setTitle("Save As");
+        stage.show();
     }
     
     @FXML
     private void save(ActionEvent event){
-        this.imagenNueva.saveImage(this.TheCanvas.getGraphicsContext2D());
+        //this.imagenNueva.saveImage(this.TheCanvas.getGraphicsContext2D());
+        SavePNGFileBrowserFXMLController savePNG = new SavePNGFileBrowserFXMLController();
+        savePNG.setFile(this.recoveredFile);
+        savePNG.setImageToSave(this.TheCanvas.getGraphicsContext2D());
+        savePNG.justSaveIt();
     }
     
     public void setDirection(String path){

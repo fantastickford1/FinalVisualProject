@@ -51,9 +51,31 @@ public class AdminFXMLController implements Initializable {
     private ImageView consultar;        
     private Conexion con = null;
     private ResultSet rs = null;
+    private Stage stage;
+    private Parent root;
     
     String type;
     
+    @FXML private void close()
+    {
+        Stage stage = new Stage();
+        FXMLLoader myLoader = new FXMLLoader(
+        getClass().getResource("/visualfinalproject/LogginFXML.fxml"));
+        try {
+            root = (Parent) myLoader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(UserUIFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        LogginController myController = myLoader.getController();
+        Scene loggin = new Scene(root);
+        myController.setStage(stage);
+        myController.setScene(loggin);
+        stage.setScene(loggin);
+        stage.setTitle("Loggin");
+        stage.show();
+        this.stage.close();
+        
+    }
     
     @FXML private void changeNameU(){
         mbOpcionA.setText("Usuario");
@@ -136,21 +158,31 @@ public class AdminFXMLController implements Initializable {
         
         rs = con.buscar("SELECT * FROM usuarios WHERE type = 'admin'");
         
-        TreeItem<String> root = new TreeItem<>("Admins");
+        TreeItem<String> root3 = new TreeItem<>("Admins");
         TreeItem<String> root2 = new TreeItem<>("Users");
-        root.setExpanded(true);
+        root3.setExpanded(true);
         root2.setExpanded(true);
         
         try {
             while (rs.next()) {
-                System.out.println(rs.getString("user"));
-                root.getChildren().add(new TreeItem<String>(rs.getString("user")));
+                root3.getChildren().addAll(new TreeItem<String>(rs.getString("user")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdminFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        adminTree = new TreeView<>(root);
+        rs = con.buscar("SELECT * FROM usuarios WHERE type = 'normal'");
+        
+        try {
+            while (rs.next()) {
+                root2.getChildren().addAll(new TreeItem<String>(rs.getString("user")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        adminTree.setRoot(root3);
+        userTree.setRoot(root2);
+        
     }
     
     
@@ -201,7 +233,9 @@ public class AdminFXMLController implements Initializable {
     void setScene(Scene scene) {
         this.scene = scene;
     }
-    
-    
+
+    void setStage(Stage stage) {
+        this.stage = stage;
+    }
     
 }
